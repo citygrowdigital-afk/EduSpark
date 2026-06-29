@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>EduSpark — Smart Student Success Platform</title>
+<meta name="description" content="EduSpark is the all-in-one student companion for planning, revision, homework, focus and exam success."/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="style.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+<!-- ═══════ LOADER ═══════ -->
+<div class="loader" id="loader">
+  <div class="loader-inner">
+    <svg width="64" height="64" viewBox="0 0 28 28" fill="none">
+      <circle cx="14" cy="14" r="14" fill="#FF5C35"/>
+      <path d="M8 20 L14 8 L20 20 M10.5 15.5 H17.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div class="loader-brand">EduSpark</div>
+    <div class="loader-bar"><span></span></div>
+    <div class="loader-tag">Smart Student Success Platform</div>
+  </div>
+</div>
+
+<!-- ═══════ NAV ═══════ -->
+<nav class="nav" id="nav">
+  <a class="nav-brand" onclick="showPage('dashboard')">
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="14" fill="#FF5C35"/><path d="M8 20 L14 8 L20 20 M10.5 15.5 H17.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    EduSpark
+  </a>
+  <ul class="nav-list" id="navList">
+    <li><button class="nav-btn active" data-nav="dashboard" onclick="showPage('dashboard')">Dashboard</button></li>
+    <li><button class="nav-btn" data-nav="planner"   onclick="showPage('planner')">Planner</button></li>
+    <li><button class="nav-btn" data-nav="homework"  onclick="showPage('homework')">Homework</button></li>
+    <li><button class="nav-btn" data-nav="revision"  onclick="showPage('revision')">Revision</button></li>
+    <li><button class="nav-btn" data-nav="resources" onclick="showPage('resources')">Resources</button></li>
+    <li><button class="nav-btn" data-nav="quiz"      onclick="showPage('quiz')">Quiz</button></li>
+    <li><button class="nav-btn" data-nav="focus"     onclick="showPage('focus')">Focus</button></li>
+    <li><button class="nav-btn" data-nav="analytics" onclick="showPage('analytics')">Analytics</button></li>
+    <li><button class="nav-btn" data-nav="achievements" onclick="showPage('achievements')">Achievements</button></li>
+  </ul>
+  <div class="nav-xp" title="Your XP and level">
+    <span class="nav-level" id="navLevel">Lv 1</span>
+    <span class="nav-xp-num" id="navXp">0 XP</span>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ═══════ DASHBOARD ═══════ -->
+<div class="page active" id="dashboard">
+  <section class="hero">
+    <div class="hero-noise"></div>
+    <div class="hero-left">
+      <span class="hero-pill">🎓 Built for students. Free forever.</span>
+      <h1 class="hero-h1">Study Smarter.<br/><em>Achieve More.</em></h1>
+      <p class="hero-sub">Your all-in-one student companion for planning, revision, homework tracking, focus sessions and exam success.</p>
+      <div class="hero-actions">
+        <button class="cta-primary" onclick="showPage('planner')">Start Learning →</button>
+        <button class="cta-ghost" onclick="showPage('revision')">Explore Features</button>
+      </div>
+      <div class="hero-badges">
+        <span class="badge">📐 Maths</span>
+        <span class="badge">🔬 Science</span>
+        <span class="badge">📖 English</span>
+        <span class="badge">🌍 Geography</span>
+        <span class="badge">💻 Computer Science</span>
+        <span class="badge">🏺 History</span>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-card-stack">
+        <div class="hcs-card hcs-back float-a">
+          <span class="hcs-label">🔬 Science</span>
+          <div class="hcs-q">Photosynthesis</div>
+          <div class="hcs-meta">6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂</div>
+        </div>
+        <div class="hcs-card hcs-mid float-b">
+          <span class="hcs-label">📐 Maths</span>
+          <div class="hcs-q">Pythagoras Theorem</div>
+          <div class="hcs-meta">a² + b² = c²</div>
+        </div>
+        <div class="hcs-card hcs-front float-c">
+          <span class="hcs-label">💻 Computer</span>
+          <div class="hcs-q">Binary of 10?</div>
+          <div class="hcs-meta">1010 — tap to flip</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-fluid px-4 px-md-5 mt-5">
+    <div class="sec-head">
+      <h2>Your study at a glance</h2>
+      <p>Live data from your activity — kept private on this device.</p>
+    </div>
+    <div class="stat-grid" id="statGrid"></div>
+  </section>
+
+  <section class="container-fluid px-4 px-md-5 mt-5">
+    <div class="row g-4">
+      <div class="col-lg-7">
+        <div class="panel">
+          <div class="panel-head">
+            <h3>📅 Upcoming Exams</h3>
+            <button class="link-btn" onclick="showPage('planner')">Open Planner →</button>
+          </div>
+          <div id="examList" class="exam-list"></div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="panel">
+          <div class="panel-head"><h3>🔥 Today's Focus</h3></div>
+          <div class="today-focus">
+            <div class="tf-ring" id="tfRing"><span id="tfRingTxt">0h</span></div>
+            <div class="tf-body">
+              <p>Track your deep-work minutes with the Pomodoro timer.</p>
+              <button class="cta-primary" onclick="showPage('focus')">Start a Session</button>
+            </div>
+          </div>
+        </div>
+        <div class="panel mt-4">
+          <div class="panel-head"><h3>🏆 Latest Badge</h3></div>
+          <div id="latestBadge" class="latest-badge"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-fluid px-4 px-md-5 mt-5 mb-5">
+    <div class="sec-head"><h2>Jump back in</h2><p>Pick up from where you left off.</p></div>
+    <div class="quick-grid">
+      <div class="quick" onclick="showPage('revision')"><span>📚</span><h4>Revise a chapter</h4><p>Notes, MCQs, flashcards.</p></div>
+      <div class="quick" onclick="showPage('homework')"><span>📝</span><h4>Add homework</h4><p>Track & prioritise.</p></div>
+      <div class="quick" onclick="showPage('quiz')"><span>🎯</span><h4>Take a quiz</h4><p>30+ questions ready.</p></div>
+      <div class="quick" onclick="showPage('focus')"><span>⏱️</span><h4>Focus 25 min</h4><p>Pomodoro timer.</p></div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════ PLANNER ═══════ -->
+<div class="page" id="planner">
+  <section class="page-head">
+    <span class="kicker">Study Planner</span>
+    <h1>Build a plan that <em>actually fits</em>.</h1>
+    <p>Enter your exam date, subjects and daily study hours. We'll split the time across the week with priority weighting.</p>
+  </section>
+  <section class="container-fluid px-4 px-md-5">
+    <div class="row g-4">
+      <div class="col-lg-5">
+        <div class="panel">
+          <h3>Generate plan</h3>
+          <label class="lbl">Exam date</label>
+          <input type="date" id="plExam" class="inp"/>
+          <label class="lbl mt-3">Daily study hours</label>
+          <input type="number" id="plHours" class="inp" min="1" max="10" value="3"/>
+          <label class="lbl mt-3">Subjects (select 2–6)</label>
+          <div class="chip-pick" id="plSubs"></div>
+          <label class="lbl mt-3">Plan name</label>
+          <input type="text" id="plName" class="inp" placeholder="e.g. Term-1 Prep"/>
+          <button class="cta-primary mt-3 w-100" onclick="generatePlan()">Generate Plan</button>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <div class="panel">
+          <div class="panel-head">
+            <h3>Your plan</h3>
+            <span id="plCountdown" class="countdown-pill">No exam set</span>
+          </div>
+          <div id="plOutput" class="plan-out"><p class="muted">Fill the form to generate a 7-day breakdown.</p></div>
+        </div>
+        <div class="panel mt-4">
+          <div class="panel-head"><h3>Saved plans</h3></div>
+          <div id="plSaved" class="saved-plans"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════ HOMEWORK ═══════ -->
+<div class="page" id="homework">
+  <section class="page-head">
+    <span class="kicker">Homework Tracker</span>
+    <h1>Never miss a <em>deadline</em> again.</h1>
+    <p>Add, prioritise and tick off your homework. Progress is saved on your device.</p>
+  </section>
+  <section class="container-fluid px-4 px-md-5">
+    <div class="hw-toolbar">
+      <input type="text" id="hwSearch" class="inp" placeholder="🔍  Search homework..." oninput="renderHomework()"/>
+      <select id="hwFilter" class="inp" onchange="renderHomework()">
+        <option value="all">All statuses</option>
+        <option value="pending">Pending</option>
+        <option value="progress">In Progress</option>
+        <option value="done">Completed</option>
+      </select>
+      <button class="cta-primary" onclick="openHwModal()">+ Add Homework</button>
+    </div>
+    <div class="hw-progress">
+      <div class="hwp-bar"><span id="hwBar"></span></div>
+      <div class="hwp-meta"><span id="hwMeta">0 of 0 completed</span></div>
+    </div>
+    <div id="hwList" class="hw-list"></div>
+  </section>
+
+  <div class="modal-back" id="hwModal" onclick="if(event.target===this)closeHwModal()">
+    <div class="modal">
+      <h3 id="hwModalTitle">Add Homework</h3>
+      <label class="lbl">Subject</label>
+      <select id="hwSub" class="inp"></select>
+      <label class="lbl mt-2">Title</label>
+      <input id="hwTitle" class="inp" placeholder="e.g. Chapter 4 exercises"/>
+      <label class="lbl mt-2">Due date</label>
+      <input id="hwDue" type="date" class="inp"/>
+      <label class="lbl mt-2">Priority</label>
+      <select id="hwPri" class="inp">
+        <option value="low">Low</option><option value="med" selected>Medium</option><option value="high">High</option>
+      </select>
+      <label class="lbl mt-2">Status</label>
+      <select id="hwStat" class="inp">
+        <option value="pending">Pending</option><option value="progress">In Progress</option><option value="done">Completed</option>
+      </select>
+      <div class="d-flex gap-2 mt-3">
+        <button class="cta-ghost flex-fill" onclick="closeHwModal()">Cancel</button>
+        <button class="cta-primary flex-fill" onclick="saveHw()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ REVISION ═══════ -->
+<div class="page" id="revision">
+  <section class="page-head">
+    <span class="kicker">Revision Center</span>
+    <h1>Smart, chapter-wise <em>revision packs</em>.</h1>
+    <p>Pick a subject and a chapter — get notes, key concepts, MCQs and flashcards instantly.</p>
+  </section>
+  <section class="container-fluid px-4 px-md-5">
+    <div class="rev-sub-bar" id="revSubBar"></div>
+    <div class="rev-chap-bar" id="revChapBar"></div>
+    <div id="revPack" class="rev-pack"></div>
+  </section>
+</div>
+
+<!-- ═══════ RESOURCES (Flashcards) ═══════ -->
+<div class="page" id="resources">
+  <section class="page-head">
+    <span class="kicker">Study Resources</span>
+    <h1>50+ flashcards. <em>Tap to flip.</em></h1>
+    <p>Search by keyword, filter by subject and difficulty.</p>
+  </section>
+  <section class="container-fluid px-4 px-md-5">
+    <div class="hw-toolbar">
+      <input id="fcSearch" type="text" class="inp" placeholder="🔍  Search flashcards..." oninput="renderFlashcards()"/>
+      <select id="fcSub" class="inp" onchange="renderFlashcards()"><option value="all">All subjects</option></select>
+      <select id="fcDiff" class="inp" onchange="renderFlashcards()">
+        <option value="all">All levels</option>
+        <option value="easy">Easy</option>
+        <option value="med">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+    </div>
+    <div id="fcGrid" class="fc-grid"></div>
+  </section>
+</div>
+
+<!-- ═══════ QUIZ ═══════ -->
+<div class="page" id="quiz">
+  <section class="page-head">
+    <span class="kicker">Quiz Arena</span>
+    <h1>Test what you <em>actually know</em>.</h1>
+    <p>30+ questions across subjects. Timed, scored and saved to history.</p>
+  </section>
+  <section class="container-fluid px-4 px-md-5">
+    <div id="quizSetup" class="panel">
+      <h3>Quiz setup</h3>
+      <div class="row g-3 mt-1">
+        <div class="col-md-4"><label class="lbl">Subject</label><select id="qSub" class="inp"></select></div>
+        <div class="col-md-4"><label class="lbl">Difficulty</label><select id="qDiff" class="inp">
+          <option value="all">Mixed</option><option value="easy">Easy</option><option value="med">Medium</option><option value="hard">Hard</option>
+        </select></div>
+        <div class="col-md-4"><label class="lbl">Questions</label><select id="qLen" class="inp">
+          <option>5</option><option selected>10</option><option>15</option>
+        </select></div>
+      </div>
+      <button class="cta-primary mt-3" onclick="startQuiz()">Start Quiz →</button>
+      <div class="mt-4">
+        <h4 class="sub-h">Recent attempts</h4>
+        <div id="quizHistory" class="quiz-hist"></div>
+      </div>
+    </div>
+
+    <div id="quizPlay" class="panel hidden">
+      <div class="quiz-top">
+        <div class="quiz-prog"><span id="qProgBar"></span></div>
+        <div class="quiz-timer" id="qTimer">00:00</div>
+      </div>
+      <div class="quiz-sub" id="qSubLabel"></div>
+      <div class="quiz-q" id="qText"></div>
+      <div class="quiz-opts" id="qOpts"></div>
+      <div class="d-flex justify-content-between mt-3">
+        <span class="muted" id="qCounter"></span>
+        <button class="cta-ghost" onclick="skipQuestion()">Skip →</button>
+      </div>
+    </div>
+
+    <div id="quizResult" class="panel hidden result-panel">
+      <div class="result-ring" id="resultRing"></div>
+      <h2 id="resultTitle"></h2>
+      <p id="resultSub" class="muted"></p>
+      <div class="result-grid">
+        <div><span class="rg-num" id="rgCorrect">0</span><span class="rg-lbl">Correct</span></div>
+        <div><span class="rg-num" id="rgWrong">0</span><span class="rg-lbl">Wrong</span></div>
+        <div><span class="rg-num" id="rgAcc">0%</span><span class="rg-lbl">Accuracy</span></div>
+        <div><span class="rg-num" id="rgXp">+0</span><span class="rg-lbl">XP earned</span></div>
+      </div>
+      <div class="d-flex gap-2 mt-3 justify-content-center">
+        <button class="cta-ghost" onclick="resetQuiz()">Back to setup</button>
+        <button class="cta-primary" onclick="startQuizSame()">Retry</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════ FOCUS ═══════ -->
+<div class="page" id="focus">
+  <section class="page-head">
+    <span class="kicker">Focus Mode</span>
+    <h1>One timer. <em>Zero distractions.</em></h1>
+    <p>Classic Pomodoro — pick a preset, start the clock, log your deep work.</p>
+  </section>
+  <section class="container-fluid px-4 px-md-5">
+    <div class="row g-4">
+      <div class="col-lg-7">
+        <div class="panel focus-panel">
+          <div class="focus-presets">
+            <button class="fp" data-w="25" data-b="5"  onclick="setFocusMode(25,5,this)">25 / 5</button>
+            <button class="fp active" data-w="45" data-b="10" onclick="setFocusMode(45,10,this)">45 / 10</button>
+            <button class="fp" data-w="60" data-b="15" onclick="setFocusMode(60,15,this)">60 / 15</button>
+          </div>
+          <div class="focus-ring">
+            <svg viewBox="0 0 200 200">
+              <circle cx="100" cy="100" r="88" stroke="#EDE9E3" stroke-width="14" fill="none"/>
+              <circle id="focusArc" cx="100" cy="100" r="88" stroke="#FF5C35" stroke-width="14" fill="none"
+                stroke-linecap="round" stroke-dasharray="552.9" stroke-dashoffset="0" transform="rotate(-90 100 100)"/>
+            </svg>
+            <div class="focus-time" id="focusTime">45:00</div>
+            <div class="focus-mode" id="focusMode">Work session</div>
+          </div>
+          <div class="focus-actions">
+            <button class="cta-primary" id="focusStart" onclick="toggleFocus()">Start</button>
+            <button class="cta-ghost" onclick="resetFocus()">Reset</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="panel">
+          <h3>Your focus stats</h3>
+          <div class="fs-row"><span>Today</span><b id="fsToday">0 min</b></div>
+          <div class="fs-row"><span>This week</span><b id="fsWeek">0 min</b></div>
+          <div class="fs-row"><span>All time sessions</span><b id="fsAll">0</b></div>
+          <div class="fs-illu">
+            <svg viewBox="0 0 200 130" width="100%">
+              <rect x="10" y="80" width="180" height="40" rx="6" fill="#FFEFE6"/>
+              <rect x="40" y="40" width="120" height="50" rx="8" fill="#FF5C35"/>
+              <rect x="55" y="55" width="90" height="6" rx="3" fill="#fff" opacity=".6"/>
+              <rect x="55" y="68" width="60" height="6" rx="3" fill="#fff" opacity=".4"/>
+              <circle cx="160" cy="35" r="10" fill="#FFC9B6"/>
+              <path d="M30 80 q70 -60 140 0" stroke="#D94520" stroke-width="2" fill="none" opacity=".3"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════ ANALYTICS ═══════ -->
+<div class="page" id="analytics">
+  <section class="page-head">
+    <span class="kicker">Analytics</span>
+    <h1>See your <em>real progress</em>.</h1>
+    <p>Enter your latest test marks per subject and we'll find your strengths and gaps.</p>
+  </section>
+  <section class="container-fluid px-4 px-md-5">
+    <div class="row g-4">
+      <div class="col-lg-5">
+        <div class="panel">
+          <h3>Enter marks (/100)</h3>
+          <div id="anInputs"></div>
+          <button class="cta-primary w-100 mt-2" onclick="saveMarks()">Save & Analyse</button>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <div class="panel">
+          <h3>Overview</h3>
+          <div class="an-overview">
+            <div><span class="an-num" id="anAvg">—</span><span class="an-lbl">Average</span></div>
+            <div><span class="an-num" id="anStrong">—</span><span class="an-lbl">Strongest</span></div>
+            <div><span class="an-num" id="anWeak">—</span><span class="an-lbl">Focus on</span></div>
+          </div>
+          <p id="anRec" class="muted mt-2">Save marks to see recommendations.</p>
+        </div>
+        <div class="row g-4 mt-1">
+          <div class="col-md-7"><div class="panel"><h3>Subject scores</h3><canvas id="chartBar" height="220"></canvas></div></div>
+          <div class="col-md-5"><div class="panel"><h3>Distribution</h3><canvas id="chartDoughnut" height="220"></canvas></div></div>
+        </div>
+        <div class="panel mt-4"><h3>Progress over time</h3><canvas id="chartLine" height="180"></canvas></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════ ACHIEVEMENTS ═══════ -->
+<div class="page" id="achievements">
+  <section class="page-head">
+    <span class="kicker">Achievements</span>
+    <h1>Level up your <em>study game</em>.</h1>
+    <p>Earn XP from quizzes, homework and focus sessions. Unlock badges as you go.</p>
+  </section>
+  <section class="container-fluid px-4 px-md-5">
+    <div class="lvl-panel">
+      <div class="lvl-left">
+        <div class="lvl-num" id="lvlNum">1</div>
+        <div>
+          <div class="lvl-name" id="lvlName">Scholar</div>
+          <div class="lvl-meta"><span id="lvlXp">0</span> XP · <span id="lvlNext">100 XP to next level</span></div>
+        </div>
+      </div>
+      <div class="lvl-bar"><span id="lvlBar"></span></div>
+    </div>
+    <div class="badges-grid" id="badgesGrid"></div>
+  </section>
+</div>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer class="footer">
+  <div class="ft-grid">
+    <div>
+      <div class="ft-brand">
+        <svg width="22" height="22" viewBox="0 0 28 28"><circle cx="14" cy="14" r="14" fill="#FF5C35"/><path d="M8 20 L14 8 L20 20 M10.5 15.5 H17.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        EduSpark
+      </div>
+      <p class="ft-tag">Smart Student Success Platform.<br/>Designed for students. Built for success.</p>
+    </div>
+    <div>
+      <h5>Product</h5>
+      <a onclick="showPage('planner')">Planner</a>
+      <a onclick="showPage('homework')">Homework</a>
+      <a onclick="showPage('revision')">Revision</a>
+      <a onclick="showPage('quiz')">Quiz</a>
+    </div>
+    <div>
+      <h5>More</h5>
+      <a onclick="showPage('focus')">Focus mode</a>
+      <a onclick="showPage('analytics')">Analytics</a>
+      <a onclick="showPage('achievements')">Achievements</a>
+    </div>
+    <div>
+      <h5>Connect</h5>
+      <div class="ft-social">
+        <a aria-label="Twitter">🐦</a><a aria-label="Instagram">📸</a><a aria-label="GitHub">💻</a><a aria-label="Email">✉️</a>
+      </div>
+      <p class="ft-mini">© <span id="ftYear"></span> EduSpark · Class 11 project</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Toast -->
+<div id="toast" class="toast"></div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
