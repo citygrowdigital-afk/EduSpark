@@ -59,7 +59,7 @@
       <h1 class="hero-h1">Study Smarter.<br/><em>Achieve More.</em></h1>
       <p class="hero-sub">Your all-in-one student companion for planning, revision, homework tracking, focus sessions and exam success.</p>
       <div class="hero-actions">
-        <button class="cta-primary" onclick="showPage('planner')">Start Learning →</button>
+        <button class="cta-primary" onclick="showPage('planner')">Get Started →</button>
         <button class="cta-ghost" onclick="showPage('revision')">Explore Features</button>
       </div>
       <div class="hero-badges">
@@ -85,8 +85,8 @@
         </div>
         <div class="hcs-card hcs-front float-c">
           <span class="hcs-label">💻 Computer</span>
-          <div class="hcs-q">Binary of 10?</div>
-          <div class="hcs-meta">1010 — tap to flip</div>
+          <div class="hcs-q">What is Binary of 10?</div>
+          <div class="hcs-meta">1010</div>
         </div>
       </div>
     </div>
@@ -152,14 +152,14 @@
     <div class="row g-4">
       <div class="col-lg-5">
         <div class="panel">
-          <h3>Generate plan</h3>
-          <label class="lbl">Exam date</label>
+          <h3>Create Your Plan</h3>
+          <label class="lbl">Exam Date</label>
           <input type="date" id="plExam" class="inp"/>
-          <label class="lbl mt-3">Daily study hours</label>
+          <label class="lbl mt-3">Daily Study Hours</label>
           <input type="number" id="plHours" class="inp" min="1" max="10" value="3"/>
-          <label class="lbl mt-3">Subjects (select 2–6)</label>
+          <label class="lbl mt-3">Subjects (Select 2–6)</label>
           <div class="chip-pick" id="plSubs"></div>
-          <label class="lbl mt-3">Plan name</label>
+          <label class="lbl mt-3">Plan Name</label>
           <input type="text" id="plName" class="inp" placeholder="e.g. Term-1 Prep"/>
           <button class="cta-primary mt-3 w-100" onclick="generatePlan()">Generate Plan</button>
         </div>
@@ -170,10 +170,10 @@
             <h3>Your plan</h3>
             <span id="plCountdown" class="countdown-pill">No exam set</span>
           </div>
-          <div id="plOutput" class="plan-out"><p class="muted">Fill the form to generate a 7-day breakdown.</p></div>
+          <div id="plOutput" class="plan-out"><p class="muted">Fill out the form to generate your 7-day plan.</p></div>
         </div>
         <div class="panel mt-4">
-          <div class="panel-head"><h3>Saved plans</h3></div>
+          <div class="panel-head"><h3>Saved Plans</h3></div>
           <div id="plSaved" class="saved-plans"></div>
         </div>
       </div>
