@@ -462,7 +462,7 @@ function renderHomework(){
       <span class="hw-sub-tag" style="background:${s.bg};color:${s.acc}">${s.ic} ${s.name}</span>
       <div class="hw-title">${h.title}</div>
       <div class="hw-meta"><span>Due ${fmtDate(h.due)} · ${d<0?'overdue '+(-d)+'d':d===0?'today':d+'d left'}</span></div>
-      <div class="d-flex gap-2 align-items-center mb-2">
+      <div class="hw-pri-stat-row">
         <span class="hw-pri ${h.pri}">${h.pri.toUpperCase()}</span>
         <span class="hw-stat ${h.stat}">${h.stat==='progress'?'In progress':h.stat[0].toUpperCase()+h.stat.slice(1)}</span>
       </div>
